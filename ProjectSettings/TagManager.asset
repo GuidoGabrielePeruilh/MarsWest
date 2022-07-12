@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - AudioMainMenu
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - walls
+  - enemy
+  - pj
+  - EnemyBullet
+  - PjBullet
+  - LifePowerUp
+  - fatEnemy
+  - Objetcs
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: BaseFloor
+    uniqueID: 3560937393
+    locked: 0
+  - name: Decorations
+    uniqueID: 4050690861
+    locked: 0
+  - name: Houses
+    uniqueID: 2603783231
+    locked: 0
+  - name: RoofHouses
+    uniqueID: 1053824309
+    locked: 0
+  - name: Player
+    uniqueID: 2106627721
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
