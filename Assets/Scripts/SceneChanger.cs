@@ -9,6 +9,9 @@ public class SceneChanger : MonoBehaviour
     AudioSource audioSourceMainMenu;
     SpriteRenderer audioSpriteRenderer;
 
+    GameObject audioGameLevels;
+    AudioSource audioSourceaudioGameLevels;
+    SpriteRenderer audioSpriteRendereraudioGameLevels;
     private void Awake()
     {
 
@@ -19,7 +22,6 @@ public class SceneChanger : MonoBehaviour
     }
     private void Start()
     {
-
         if (!audioSourceMainMenu.isPlaying && audioSpriteRenderer.enabled)
         {
             audioSourceMainMenu.Play();
@@ -34,6 +36,14 @@ public class SceneChanger : MonoBehaviour
         {
             audioSourceMainMenu.Stop();
             audioSpriteRenderer.enabled = false;
+
+        }
+        else if (sceneName == "Level2")
+        {
+            audioGameLevels = GameObject.Find("AmbientMusic");
+            audioSourceaudioGameLevels = audioGameLevels.GetComponent<AudioSource>();
+            audioSpriteRendereraudioGameLevels = audioGameLevels.GetComponent<SpriteRenderer>();
+            DontDestroyOnLoad(audioGameLevels);
         }
         else
             audioSpriteRenderer.enabled = true;
@@ -45,4 +55,5 @@ public class SceneChanger : MonoBehaviour
     {
         Application.Quit();
     }
+
 }

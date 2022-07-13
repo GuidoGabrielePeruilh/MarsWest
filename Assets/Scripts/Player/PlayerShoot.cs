@@ -66,7 +66,8 @@ public class PlayerShoot : MonoBehaviour
 
     void SoundandInstantiateAnimationEvent()
     {
-        _bulletPj.playAudio(_bulletPj.bulletShootFromPlayer);
+        //_bulletPj.playAudio(_bulletPj.bulletShootFromPlayer);
+        _bulletPj.bulletsAudioSourceShoot.PlayOneShot(_bulletPj.bulletShootFromPlayer);
         var b = Instantiate(_bulletPj, transform.position, transform.rotation);
         b.transform.up = mouseWorldPosition - transform.position;
         b.speed = _bulletPj.speed;

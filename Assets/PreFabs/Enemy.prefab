@@ -106,6 +106,9 @@ MonoBehaviour:
   currentEnemyLife: 0
   lifePowerUp: {fileID: 1163515498026509959, guid: 49e539b6e9f3d6b499373baaf17d9d6c, type: 3}
   damage: 3
+  enemyLifeSlider: {fileID: 0}
+  enemyLifeText: {fileID: 0}
+  UIEnemyStats: {fileID: 0}
 --- !u!58 &7197864684253492964
 CircleCollider2D:
   m_ObjectHideFlags: 0

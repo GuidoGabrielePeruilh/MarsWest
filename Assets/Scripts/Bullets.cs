@@ -24,7 +24,7 @@ public class Bullets : MonoBehaviour
     private void Awake()
     {
         _player = FindObjectOfType<PlayerMove>();
-        bulletsAudioSourceShoot = GetComponent<AudioSource>();
+        bulletsAudioSourceShoot = gameObject.GetComponent<AudioSource>();
         bulletSpriteRenderer = GetComponent<SpriteRenderer>();
         bulletCollider = GetComponent<CapsuleCollider2D>();
     }

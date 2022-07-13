@@ -35,9 +35,13 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        CheckPlayerLife();
-        CheckEnemyLife();
-        CheckEnemiesRemaining();
+        if (player != null)
+        {
+            CheckPlayerLife();
+            CheckEnemiesRemaining();
+        }
+        if (enemy != null)
+            CheckEnemyLife();
     }
 
     void CheckPlayerLife()
@@ -69,7 +73,7 @@ public class GameManager : MonoBehaviour
         enemiesRemainingText.text = _initEnemyRemaining + player.enemiesRemaining.ToString("f0");
         if(player.enemiesRemaining <= 0)
         {
-            sceneChanger.newScene("Victory");
+            sceneChanger.newScene("Level2");
         }
 
     }

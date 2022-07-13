@@ -18,7 +18,7 @@ public class ShooterEnemy : MonoBehaviour
 
     bool lookAtPj;
 
-    Vector3 _initRotation;
+
 
     public Bullets _enemyBullet;
     float prepareToShootTime;
@@ -28,23 +28,21 @@ public class ShooterEnemy : MonoBehaviour
     public float currentEnemyLife;
     public GameObject lifePowerUp;
     public float damage = 1;
-    SpriteRenderer mySpriteRenderer;
 
-    bool isLookingUp = true;
 
 
     private void Awake()
     {
         _player = FindObjectOfType<PlayerMove>();
         _playerShoot = FindObjectOfType<PlayerShoot>();
-        mySpriteRenderer = GetComponent<SpriteRenderer>();
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
         currentEnemyLife = _initLife;
-        _initRotation = transform.rotation.eulerAngles;
+
         _Range = 2.14f; // valor que se asigno para que cambie de direccion
     }
 
@@ -88,7 +86,8 @@ public class ShooterEnemy : MonoBehaviour
             prepareToShootTime += Time.deltaTime;
             if (prepareToShootTime >= fireRate)
             {
-                _enemyBullet.playAudio(_enemyBullet.enemyShoot);
+                //_enemyBullet.playAudio(_enemyBullet.enemyShoot);
+                _enemyBullet.bulletsAudioSourceShoot.PlayOneShot(_enemyBullet.enemyShoot);
                 var b = Instantiate(_enemyBullet, transform.position, transform.rotation);
                 b.transform.up = transform.up;
                 b.speed = _enemyBullet.speed;
