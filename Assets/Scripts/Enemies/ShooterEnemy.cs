@@ -18,7 +18,7 @@ public class ShooterEnemy : MonoBehaviour
 
     bool lookAtPj;
 
-
+    Transform positionChild;
 
     public Bullets _enemyBullet;
     float prepareToShootTime;
@@ -29,12 +29,17 @@ public class ShooterEnemy : MonoBehaviour
     public GameObject lifePowerUp;
     public float damage = 1;
 
+    public bool moveVertical = true;
 
+    Animator animatorEnemy;
 
     private void Awake()
     {
         _player = FindObjectOfType<PlayerMove>();
         _playerShoot = FindObjectOfType<PlayerShoot>();
+        positionChild = transform.GetChild(0).GetComponent<Transform>().transform;
+        animatorEnemy = GetComponent<Animator>();
+
 
     }
 
@@ -88,8 +93,10 @@ public class ShooterEnemy : MonoBehaviour
             {
                 //_enemyBullet.playAudio(_enemyBullet.enemyShoot);
                 _enemyBullet.bulletsAudioSourceShoot.PlayOneShot(_enemyBullet.enemyShoot);
-                var b = Instantiate(_enemyBullet, transform.position, transform.rotation);
-                b.transform.up = transform.up;
+                //var b = Instantiate(_enemyBullet, transform.position, transform.rotation);
+                var b = Instantiate(_enemyBullet, positionChild.position, positionChild.rotation);
+                //b.transform.up = transform.up;
+                b.transform.up = positionChild.up;
                 b.speed = _enemyBullet.speed;
                 b.damage = damage;
                 prepareToShootTime = 0;
@@ -103,27 +110,48 @@ public class ShooterEnemy : MonoBehaviour
         CheckDistanceFromPlayer();
         if (distanceFromPlayer <= minDistance)
         {
+            //transform.GetChild(0).GetComponent<Transform>().transform.up;
             lookAt = _player.transform.position - transform.position;
             lookAtPj = true;
+            animatorEnemy.SetBool("Walking", false);
+
 
         }
         else
         {
             _ChangePosTimer += Time.deltaTime;
             lookAtPj = false;
+            animatorEnemy.SetBool("Walking", true);
         }
-
-        transform.up = lookAt;
+        positionChild.up = lookAt;
+        //transform.up = lookAt;
     }
     void Move()
     {
-        if (_changeDir)
+
+        if (moveVertical)
         {
-            transform.position += _speed * new Vector3(0, 1, 0) * Time.deltaTime; // si es true
+            if (_changeDir)
+            {
+                transform.position += _speed * new Vector3(0, 1, 0) * Time.deltaTime; // si es true
+            }
+            else
+            {
+                transform.position += _speed * new Vector3(0, -1, 0) * Time.deltaTime; // si es false
+            }
+
         }
         else
         {
-            transform.position += _speed * new Vector3(0, -1, 0) * Time.deltaTime; // si es false
+            if (_changeDir)
+            {
+                transform.position += _speed * new Vector3(1, 0, 0) * Time.deltaTime; // si es true
+            }
+            else
+            {
+                transform.position += _speed * new Vector3(-1, 0, 0) * Time.deltaTime; // si es false
+            }
+
         }
 
     }

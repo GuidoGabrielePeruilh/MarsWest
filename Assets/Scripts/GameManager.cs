@@ -21,16 +21,19 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI enemiesRemainingText;
     private string _initEnemyRemaining;
+    public bool checkEnemysRemainginBool;
+
+    public TextMeshProUGUI getMoneyText;
 
     public SceneChanger sceneChanger;
-
 
 
     void Start()
     {
         _initTextPlayer = playerLifeText.text;
         _initTextEnemy = enemyLifeText.text;
-        _initEnemyRemaining = enemiesRemainingText.text;
+        if(checkEnemysRemainginBool)
+            _initEnemyRemaining = enemiesRemainingText.text;
     }
 
     void Update()
@@ -38,7 +41,10 @@ public class GameManager : MonoBehaviour
         if (player != null)
         {
             CheckPlayerLife();
-            CheckEnemiesRemaining();
+            if(checkEnemysRemainginBool)
+                CheckEnemiesRemaining();
+            CheckMoneyGain();
+            CheckWinningCondition();
         }
         if (enemy != null)
             CheckEnemyLife();
@@ -76,5 +82,19 @@ public class GameManager : MonoBehaviour
             sceneChanger.newScene("Level2");
         }
 
+    }
+
+    void CheckMoneyGain()
+    {
+        if (player.MoneyGain)
+            getMoneyText.text = "Scape with the Money";
+    }
+
+    void CheckWinningCondition()
+    {
+        if (player.PJScaped)
+        {
+            sceneChanger.newScene("Victory");
+        }
     }
 }

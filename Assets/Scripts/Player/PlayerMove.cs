@@ -13,12 +13,19 @@ public class PlayerMove : MonoBehaviour
     public float currentLifePlayer;
     public float quantityEnemiesToWin;
     public float enemiesRemaining;
+    public bool MoneyGain = false;
+    public bool PJScaped = false;
     ShooterEnemy _shooterEnemy;
     Animator animatorPJ;
     SpriteRenderer mySpriteRenderer;
     public bool mirrowed = false;
 
     public PickUpItems pickUpItemsInformation;
+    public Saloon saloonStats;
+
+    public CanvasButtons canvas;
+
+
 
     private void Awake()
     {
@@ -40,6 +47,15 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         pickUpItemsInformation = FindObjectOfType<PickUpItems>();
+
+        if (enemiesRemaining <= 0)
+        {
+            enemiesRemaining = 0;
+            Debug.Log("Player GANO, no hay mas enemigos");
+        }
+    }
+    private void FixedUpdate()
+    {
         if (currentLifePlayer <= 0)
         {
             animatorPJ.SetBool("dead", true);
@@ -50,15 +66,6 @@ public class PlayerMove : MonoBehaviour
         }
         else
             MoveController();
-        if (enemiesRemaining <= 0)
-        {
-            enemiesRemaining = 0;
-            Debug.Log("Player GANO, no hay mas enemigos");
-        }
-    }
-    private void FixedUpdate()
-    {
-
     }
     void MoveController()
     {
@@ -164,6 +171,28 @@ public class PlayerMove : MonoBehaviour
             currentLifePlayer -= _shooterEnemy.damage;
             Destroy(collision.gameObject);
         }
+
+        if(collision.gameObject.layer == 15) //saloon
+        {
+            saloonStats.itWasUsed = true;
+            canvas.enterSaloonUpgrades();
+            gameObject.SetActive(false);
+        }
+
+        if(collision.gameObject.layer == 14) //money
+        {
+            collision.gameObject.SetActive(false);
+            MoneyGain = true;
+        }
+        if (MoneyGain)
+        {
+            if(collision.gameObject.layer == 17) //limit winning condition
+            {
+                PJScaped = true;
+            }
+
+        }
+
 
     }
 

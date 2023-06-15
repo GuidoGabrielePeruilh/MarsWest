@@ -137,7 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   lifeTimeBullet: 3
-  damage: 0
+  damage: 5
   bulletShootFromPlayer: {fileID: 8300000, guid: 31104cbad9e5a9242b2c4c205b9c8c9e, type: 3}
   bulletsAudioSourceShoot: {fileID: -7165621441168568021}
   playerGettingHit: {fileID: 8300000, guid: ed33fa7c7ec0cdd43bf2b0b65e248320, type: 3}

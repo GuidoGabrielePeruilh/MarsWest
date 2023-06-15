@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2627504333086538159}
   - component: {fileID: 2627504333086538158}
+  - component: {fileID: -4704321263673934130}
   m_Layer: 0
   m_Name: saloon
   m_TagString: Untagged
@@ -82,3 +83,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-4704321263673934130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2627504333086538153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1ef4741e375234fbf353b304fdc52e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradesOptions: {fileID: 0}
+  lifeRecoveryUpgrade: 10
+  damageUpgrade: 3
+  colliderSaloon: {fileID: 0}
+  itWasUsed: 0

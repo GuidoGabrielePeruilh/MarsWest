@@ -12,11 +12,14 @@ public class SceneChanger : MonoBehaviour
     GameObject audioGameLevels;
     AudioSource audioSourceaudioGameLevels;
     SpriteRenderer audioSpriteRendereraudioGameLevels;
+
+    public GameManager myGameManager;
+
     private void Awake()
     {
 
         audio1 = GameObject.Find("Audio");
-        audioSourceMainMenu = audio1.GetComponent<AudioSource>();
+        audioSourceMainMenu = audio1.GetComponent<AudioSource>();   
         audioSpriteRenderer = audio1.GetComponent<SpriteRenderer>();
 
     }
@@ -44,9 +47,16 @@ public class SceneChanger : MonoBehaviour
             audioSourceaudioGameLevels = audioGameLevels.GetComponent<AudioSource>();
             audioSpriteRendereraudioGameLevels = audioGameLevels.GetComponent<SpriteRenderer>();
             DontDestroyOnLoad(audioGameLevels);
+            myGameManager.checkEnemysRemainginBool = false;
         }
         else
+        {
             audioSpriteRenderer.enabled = true;
+            audioGameLevels = GameObject.Find("AmbientMusic");
+            audioSourceaudioGameLevels = audioGameLevels.GetComponent<AudioSource>();
+            audioSpriteRendereraudioGameLevels = audioGameLevels.GetComponent<SpriteRenderer>();
+            audioSourceaudioGameLevels.Stop();
+        }
         SceneManager.LoadScene(sceneName);
         Time.timeScale = 1;
     }
